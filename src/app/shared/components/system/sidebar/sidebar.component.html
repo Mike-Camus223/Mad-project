@@ -1,0 +1,35 @@
+<div class="w-64 min-h-screen top-0 left-0 bg-red-400 fixed flex flex-col justify-between">
+<div class="p-2 w-full flex justify-center">
+    <div class="px-4">
+        <h1 class="text-[48px] text-white logo-main-bold italic uppercase">Mad</h1>
+    </div>
+</div>
+<ul class="p-2 w-full">
+    <li>
+        <a routerLink="/general" class="flex items-center w-full h-auto hover:bg-red-300 transition-all duration-600 ease-in-out rounded-lg gap-2 px-4 py-3 mb-2">
+            <lucide-icon class="text-white" name="layout-dashboard" [size]="25" [strokeWidth]="2" [absoluteStrokeWidth]="true"></lucide-icon>
+            <span class="text-white text-md roboto">General</span>
+        </a>
+    </li>
+    <li>
+        <a routerLink="/systems" class="flex items-center w-full h-auto hover:bg-red-300 transition-all duration-600 ease-in-out rounded-lg gap-2 px-4 py-3 mb-2">
+            <lucide-icon class="text-white" name="settings" [size]="25" [strokeWidth]="2" [absoluteStrokeWidth]="true"></lucide-icon>
+            <span class="text-white text-md roboto">Sistemas</span>
+        </a>
+    </li>
+    <li>
+        <a routerLink="/support" class="flex items-center w-full h-auto hover:bg-red-300 transition-all duration-600 ease-in-out rounded-lg gap-2 px-4 py-3 mb-2">
+            <lucide-icon class="text-white" name="help-circle" [size]="25" [strokeWidth]="2" [absoluteStrokeWidth]="true"></lucide-icon>
+            <span class="text-white text-md roboto">Soporte</span>
+        </a>
+    </li>
+</ul>
+<ul class="p-2 w-full">
+    <li>
+        <a routerLink="#" class="flex items-center w-full h-auto hover:bg-red-300 transition-all duration-600 ease-in-out rounded-lg gap-2 px-4 py-3 mb-2">
+            <lucide-icon class="text-white" name="log-out" [size]="25" [strokeWidth]="2" [absoluteStrokeWidth]="true"></lucide-icon>
+            <span class="text-white text-md roboto">Cerrar Sesión</span>
+        </a>
+    </li>
+</ul>
+</div>
