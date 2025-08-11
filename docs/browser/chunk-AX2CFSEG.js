@@ -1,0 +1,1 @@
+import{Fa as o,Ga as a,La as r,va as t}from"./chunk-2EKP3WUA.js";import"./chunk-2NFLSA4Y.js";var s=class n{static \u0275fac=function(e){return new(e||n)};static \u0275cmp=t({type:n,selectors:[["app-general"]],decls:2,vars:0,consts:[[1,"text-2xl","font-bold","mb-4"]],template:function(e,p){e&1&&(o(0,"h1",0),r(1,"General"),a())},encapsulation:2})};export{s as GeneralComponent};

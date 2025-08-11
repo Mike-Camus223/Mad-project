@@ -1,0 +1,1 @@
+import{Fa as p,Ga as n,La as s,va as o}from"./chunk-2EKP3WUA.js";import"./chunk-2NFLSA4Y.js";var a=class e{static \u0275fac=function(t){return new(t||e)};static \u0275cmp=o({type:e,selectors:[["app-support"]],decls:2,vars:0,consts:[[1,"text-2xl","font-bold","mb-4"]],template:function(t,i){t&1&&(p(0,"h1",0),s(1,"Soporte"),n())},encapsulation:2})};export{a as SupportComponent};
