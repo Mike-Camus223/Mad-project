@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import {
   LUCIDE_ICONS,
@@ -10,6 +10,12 @@ import {
   HelpCircle,
   LogOut
 } from 'lucide-angular';
+
+interface MenuItem {
+  link: string;
+  icon: string;
+  label: string;
+}
 
 @Component({
   selector: 'app-sidebar',
@@ -31,5 +37,13 @@ import {
   styleUrl: './sidebar.component.scss'
 })
 export class SidebarComponent {
+  @Input() expanded: boolean = true;
+
+  menuItems: MenuItem[] = [
+    { link: '/general', icon: 'layout-dashboard', label: 'General' },
+    { link: '/systems', icon: 'settings', label: 'Configuración' },
+    { link: '/support', icon: 'help-circle', label: 'Soporte' },
+    // Podés agregar más items aquí si querés
+  ];
 
 }

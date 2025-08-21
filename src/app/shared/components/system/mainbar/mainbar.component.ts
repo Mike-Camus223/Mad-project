@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, HostListener, inject } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, OnDestroy, OnInit, inject, Output } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AlignJustify, Bell, BellOff, LifeBuoy, LUCIDE_ICONS, LucideAngularModule, LucideIconProvider, Maximize, MessageSquareMore, Minimize, Moon, Search, Settings, SquareUser, Sun } from 'lucide-angular';
+import { DarkmodeService } from '../../../../core/services/darkmode/darkmode.service';
+import { Subscription } from 'rxjs';
 
-interface DropdownSettingsUser { // esta es la interfaz que hice para el array de opciones del dropdown de usuario, podes ir incrementando mas funciones y catalogalas como segun vos sientas util, por el momento use strings //
+interface DropdownSettingsUser { 
   link: string;
   icon: string;
   label: string;
@@ -36,18 +38,19 @@ interface DropdownSettingsUser { // esta es la interfaz que hice para el array d
   templateUrl: './mainbar.component.html',
   styleUrl: './mainbar.component.scss'
 })
-export class MainbarComponent {
+export class MainbarComponent implements OnInit, OnDestroy {
 
   //=========== VARIABLES TOTALES =================//
-
-  private ErefDropdown = inject(ElementRef); // injeccion del elementref //
+  @Output() menuToggle = new EventEmitter<void>();
+  private _ErefDropdown = inject(ElementRef); // injeccion del elementref //
   // esto se usa para poder detectar si un lick ocurre dentro o fuera del dropdown de usuario //
   // generando evitamiento de cierres accidentales cuando interactuamos con el //
-
   UserDropdown: boolean = false; // variable del estado actual del dropdown de usuario (true o false) por defecto false //
   ActiveFullscreen: boolean = false; // variable del estado actual del boton fullscreen //
-  DarkmodeState: boolean = false; // variable del estado actual del boton del modo oscuro //
   NotifyState: boolean = false; // variable del estado actual del boton de notificaciones //
+  DarkmodeState: boolean = false; // variable del estado actual del icono del boton de modo oscuro //
+  private _darkmode = inject(DarkmodeService); // variable con el servicio modo oscuro //
+  private _subs = new Subscription(); // variable con la suscripcion del servicio modo oscuro //
 
   // ========== METODOS Y ARRAY CON INTERFAZ DEL DROPDOWN DE USUARIO ============= //
 
@@ -74,7 +77,7 @@ export class MainbarComponent {
   // cierra el dropdown automaticamente //
   @HostListener('document:click', ['$event'])
   clickOutside(event: MouseEvent) {
-    if (!this.ErefDropdown.nativeElement.contains(event.target)) {
+    if (!this._ErefDropdown.nativeElement.contains(event.target)) {
       this.UserDropdown = false;
     }
   }
@@ -89,7 +92,6 @@ export class MainbarComponent {
     if (!this.ActiveFullscreen) {
 
       // Si se activa activefullscreen se genera el efecto fullscreen (obviamente) //
-      
       ElementFullScreen.requestFullscreen?.() ||
       (ElementFullScreen as any).webkitRequestFullscreen?.() || // compatibilidad con Safari
       (ElementFullScreen as any).msRequestFullscreen?.();      //  compatibilidad con internet explorer (ya nadie usa eso por las dudas viste?)
@@ -107,13 +109,35 @@ export class MainbarComponent {
 
   // ============ METODO PARA EL DARK MODE ============ //
 
-  DarkmodeToggle() {
-    this.DarkmodeState = !this.DarkmodeState;
+  DarkmodeToggle(event?: Event) {
+    event?.preventDefault(); 
+    this._darkmode.toggle();
   }
-
+  
   // ============ METODO PARA LAS NOTIFICACIONES =========== //
 
   NotifyToggle() {
     this.NotifyState = !this.NotifyState;
+  }
+
+  // ============ METODO PARA EL COLLAPSO DEL SIDEBAR ============ //
+
+  onMenuClick() {
+    this.menuToggle.emit();
+  }
+
+  // ============ CICLO DE VIDA ============ //
+
+  ngOnInit(): void {
+    // sincroniza DarkmodeState con el servicio para que el icono cambie al instante
+    this._subs.add(
+      this._darkmode.dark$.subscribe(isDark => {
+        this.DarkmodeState = isDark;
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this._subs.unsubscribe();
   }
 }

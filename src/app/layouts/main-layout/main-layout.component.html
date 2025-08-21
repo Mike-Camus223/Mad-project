@@ -1,16 +1,22 @@
 <nav>
-    <app-sidebar></app-sidebar>
+    <app-sidebar [expanded]="sidebarExpanded"></app-sidebar>
 </nav>
-<div class="pl-64">
-    <app-mainbar></app-mainbar>
+<div [class.pl-64]="sidebarExpanded" [class.pl-20]="!sidebarExpanded" class="transition-all duration-300">
+    <app-mainbar (menuToggle)="toggleSidebar()"></app-mainbar>
 </div>
-<div class="w-full pl-64 h-screen">
-    <div class="p-4">
-        <router-outlet></router-outlet>    
+<div class="min-h-17 w-full bg-red-400 dark:bg-red-500 absolute z-0 top-0 left-0 transition-colors duration-300 ease-in-out"></div>
+<div class="w-full h-screen mt-17" [class.pl-64]="sidebarExpanded" [class.pl-20]="!sidebarExpanded" class="transition-all duration-300">
+    <div>
+        <div class="p-4">
+            <router-outlet></router-outlet>
+        </div>
     </div>
 </div>
 
+<!-- y aca te preguntaras, que es esto? [class.pl-64]="sidebarExpanded", y en resumen es una clase de enlace condicional que sirve para poner una
+clase solamente si se cumple una condicion, en este caso sidebarExpanded es true, lo que hara aqui que si sidebarexpanded es true se aplica
+la clase pl-64 un padding 64 a ese contenedor que es para el funcionamiento de collapso del sidebar ok? -->
 
-
-
-
+<!-- otra forma de hacerlo y que angular recomienda mas por temas de control es usar la directiva [ngClass], en este caso no lo use debido
+ a que de esta forma quise ir variando, pero tambien es una forma de hacerlo con ngclass y la variable boleana, ejemplo de sintaxis:
+[ngClass]="{ 'pl-64': sidebarExpanded, 'pl-20': !sidebarExpanded }" (es lo mismo que tenemos alla arriba pero con ngclass) -->

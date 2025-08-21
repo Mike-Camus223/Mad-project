@@ -8,22 +8,22 @@ describe('AppComponent', () => {
     }).compileComponents();
   });
 
-  it('should create the app', () => {
+  it('Se deberia crear la app', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'mad' title`, () => {
+  it(`Se deberia crear el titulo que tenemos: 'mad'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app.title).toEqual('mad');
   });
 
-  it('should render title', () => {
+  it('Se deberia renderizar el titulo de la app que es "mad"', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, mad');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hola, mad');
   });
 });

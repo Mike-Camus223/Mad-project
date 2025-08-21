@@ -12,4 +12,10 @@ import { MainbarComponent } from "../../shared/components/system/mainbar/mainbar
 })
 export class MainLayoutComponent {
 
+  sidebarExpanded: boolean = true;
+
+  toggleSidebar() {
+    this.sidebarExpanded = !this.sidebarExpanded;
+  }
+
 }

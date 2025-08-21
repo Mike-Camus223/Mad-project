@@ -1,0 +1,22 @@
+// ====== Variables de @Theme ======== //
+
+// te explico javi, aca en @theme vamos a guardar las variables de color
+// que usemos en darkmode y el modo normal
+// Si falta algún color que no está en Tailwind, lo definimos ahi.
+// Las variables tienen que empezar siempre con "--color-"
+// y después le pones el nombre que quieras.
+// ejempllo: 
+// --color-darkSystem-primary: #1E151D;
+// para usarlas en tailwind:
+// bg-darkSystem-primary
+// Eso te pinta el fondo con nuestra variable, en lugar de un color
+// por defecto de tailwind => bg-red-500
+
+@theme {
+    --color-darkSystem-primary: #1E151D;
+    --color-darkSystem-secondary: #261B25;
+    --color-darkSystem-secondary-hover: #36282B;
+    --color-darkSystem-tertiary: #DB924C;
+    --color-darkSystem-tertiary-hover: #C68444;
+    --color-darkSystem-orange: #DB924C;
+}

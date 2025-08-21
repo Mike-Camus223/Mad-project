@@ -1,26 +1,7 @@
+//// Para cosas globales importamos hojas de scss aqui javi, por el momento cree 3 archivos scss 
+//// donde en cada uno se guarda los resets, fonts y el modo oscuro. /////
 @use "tailwindcss";
-
-.font-main {
-    font-family: "PT Sans Narrow", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-  }
-  
-  .font-main-bold{
-    font-family: "PT Sans Narrow", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-  }
-
-
-  .logo-main {
-    font-family: "PT Sans Narrow", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-  }
-  
-  .logo-main-bold {
-    font-family: "PT Sans Narrow", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-  }
+@use "./scss/reset/reset";
+@use "./scss/darkmode/darkmode.scss";
+@use "./scss/fonts/fonts";
+@custom-variant dark (&:where(.dark, .dark *)); // aqui declaramos el codigo que da tailwind para crear temas personalizados //

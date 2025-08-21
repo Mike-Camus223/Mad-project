@@ -1,35 +1,53 @@
-<div class="w-64 min-h-screen top-0 left-0 bg-red-400 fixed flex flex-col justify-between">
-<div class="p-2 w-full flex justify-center">
-    <div class="px-4">
-        <h1 class="text-[48px] text-white logo-main-bold italic uppercase">Mad</h1>
+<div
+  class="min-h-screen fixed z-10 top-0 left-0 bg-red-400 dark:bg-darkSystem-secondary flex flex-col justify-between transition-all duration-300 ease-in-out overflow-hidden"
+  [class.w-64]="expanded" 
+  [class.w-20]="!expanded">
+  <div class="p-2 w-full flex justify-center">
+    <div class="px-4 relative flex justify-center items-center min-w-[4rem] h-[60px]">
+      <h1
+        class="text-[48px] text-white dark:text-darkSystem-orange logo-main-bold text-nowrap italic uppercase absolute transition-opacity duration-300 ease-in-out"
+        [class.opacity-100]="expanded" 
+        [class.opacity-0]="!expanded">
+        Mad
+      </h1>
+      <h1
+        class="text-[48px] text-white dark:text-darkSystem-orange logo-main-bold text-nowrap italic uppercase absolute transition-opacity duration-300 ease-in-out"
+        [class.opacity-0]="expanded" 
+        [class.opacity-100]="!expanded">
+        M
+      </h1>
     </div>
-</div>
-<ul class="p-2 w-full">
-    <li>
-        <a routerLink="/general" class="flex items-center w-full h-auto hover:bg-red-300 transition-all duration-600 ease-in-out rounded-lg gap-2 px-4 py-3 mb-2">
-            <lucide-icon class="text-white" name="layout-dashboard" [size]="25" [strokeWidth]="2" [absoluteStrokeWidth]="true"></lucide-icon>
-            <span class="text-white text-md roboto">General</span>
-        </a>
+  </div>
+  <ul class="p-2 w-full">
+    <li *ngFor="let item of menuItems">
+      <a routerLink="{{item.link}}"
+        class="flex items-center w-full h-auto hover:bg-red-300 dark:hover:bg-darkSystem-secondary-hover rounded-lg px-3 py-3 mb-2 transition-colors duration-300 ease-in-out">
+        <div class="shrink-0 w-7 h-7 flex items-center justify-center mr-2">
+          <lucide-icon class="text-white dark:text-darkSystem-orange" [name]="item.icon" [size]="25" [strokeWidth]="2" [absoluteStrokeWidth]="true"></lucide-icon>
+        </div>
+        <span class="text-white dark:text-darkSystem-orange text-md roboto text-nowrap overflow-hidden transition-all duration-300 ease-in-out"
+          [class.opacity-0]="!expanded" 
+          [class.opacity-100]="expanded"
+          [ngClass]="expanded ? 'max-w-[12rem]' : 'max-w-0'">
+          {{item.label}}
+        </span>
+      </a>
     </li>
+  </ul>
+  <ul class="p-2 w-full">
     <li>
-        <a routerLink="/systems" class="flex items-center w-full h-auto hover:bg-red-300 transition-all duration-600 ease-in-out rounded-lg gap-2 px-4 py-3 mb-2">
-            <lucide-icon class="text-white" name="settings" [size]="25" [strokeWidth]="2" [absoluteStrokeWidth]="true"></lucide-icon>
-            <span class="text-white text-md roboto">Sistemas</span>
-        </a>
+      <a routerLink="#"
+        class="flex items-center w-full h-auto hover:bg-red-300 dark:hover:bg-darkSystem-secondary-hover rounded-lg px-3 py-3 mb-2 transition-colors duration-300 ease-in-out">
+        <div class="shrink-0 w-7 h-7 flex items-center justify-center mr-2">
+          <lucide-icon class="text-white dark:text-darkSystem-orange" name="log-out" [size]="25" [strokeWidth]="2" [absoluteStrokeWidth]="true"></lucide-icon>
+        </div>
+        <span class="text-white dark:text-darkSystem-orange text-md roboto transition-all text-nowrap duration-300 overflow-hidden ease-in-out"
+          [class.opacity-0]="!expanded" 
+          [class.opacity-100]="expanded"
+          [ngClass]="expanded ? 'max-w-[12rem]' : 'max-w-0'">
+          Cerrar Sesión
+        </span>
+      </a>
     </li>
-    <li>
-        <a routerLink="/support" class="flex items-center w-full h-auto hover:bg-red-300 transition-all duration-600 ease-in-out rounded-lg gap-2 px-4 py-3 mb-2">
-            <lucide-icon class="text-white" name="help-circle" [size]="25" [strokeWidth]="2" [absoluteStrokeWidth]="true"></lucide-icon>
-            <span class="text-white text-md roboto">Soporte</span>
-        </a>
-    </li>
-</ul>
-<ul class="p-2 w-full">
-    <li>
-        <a routerLink="#" class="flex items-center w-full h-auto hover:bg-red-300 transition-all duration-600 ease-in-out rounded-lg gap-2 px-4 py-3 mb-2">
-            <lucide-icon class="text-white" name="log-out" [size]="25" [strokeWidth]="2" [absoluteStrokeWidth]="true"></lucide-icon>
-            <span class="text-white text-md roboto">Cerrar Sesión</span>
-        </a>
-    </li>
-</ul>
+  </ul>
 </div>
